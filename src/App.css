@@ -2,23 +2,26 @@
 .app {
   display: flex;
   min-height: 100vh;
+  background-color: #f7f8fc;
 }
 
 /* Barra lateral */
 
 .sidebar {
-  width: 240px;
+  flex-shrink: 0;
+  width: 250px;
   min-height: 100vh;
-  padding: 30px 20px;
+  padding: 32px 20px;
   background-color: #ffffff;
-  border-right: 1px solid #eeeeee;
+  border-right: 1px solid #e9eaf2;
 }
 
 .logo {
-  margin: 0 0 40px;
-  font-size: 26px;
-  font-weight: bold;
-  background: linear-gradient(90deg, #a03cff, #00c6ff);
+  margin: 0 0 42px;
+  font-size: 27px;
+  font-weight: 800;
+  letter-spacing: -1px;
+  background: linear-gradient(90deg, #9333ea, #0ea5e9);
   background-clip: text;
   -webkit-background-clip: text;
   color: transparent;
@@ -29,43 +32,243 @@
 .navigation {
   display: flex;
   flex-direction: column;
-  gap: 12px;
+  gap: 8px;
 }
 
 .navigation button {
+  width: 100%;
   padding: 13px 15px;
   border: none;
-  border-radius: 10px;
+  border-radius: 12px;
   background: transparent;
-  color: #555555;
+  color: #626779;
   text-align: left;
+  font-size: 14px;
+  font-weight: 500;
   cursor: pointer;
-  transition: background-color 0.2s, color 0.2s;
+  transition:
+    background-color 0.2s ease,
+    color 0.2s ease;
 }
 
 .navigation button:hover {
   background-color: #f3e8ff;
-  color: #8b35d1;
+  color: #7e22ce;
 }
 
 /* Contenido principal */
 
 .main-content {
   flex: 1;
+  min-width: 0;
   padding: 40px;
+}
+
+.home-header {
+  margin-bottom: 32px;
+}
+
+.home-header h1 {
+  margin: 0 0 8px;
+  color: #202238;
+  font-size: 32px;
+  font-weight: 750;
+  letter-spacing: -0.8px;
+}
+
+.home-header p {
+  margin: 0;
+  color: #777b8d;
+  font-size: 15px;
 }
 
 .main-content h2 {
   margin-top: 0;
-  font-size: 28px;
-  color: #222222;
+  color: #25263b;
+  font-size: 21px;
+  font-weight: 700;
 }
 
 .main-content p {
-  color: #777777;
+  color: #777b8d;
+  line-height: 1.6;
 }
 
-/* Adaptación a pantallas pequeñas */
+/* Grabador de notas de voz */
+
+.voice-recorder {
+  margin-bottom: 36px;
+  padding: 28px;
+  background-color: #ffffff;
+  border: 1px solid #e9eaf2;
+  border-radius: 18px;
+  box-shadow: 0 4px 18px rgb(36 38 70 / 4%);
+}
+
+.voice-recorder h2 {
+  margin-bottom: 8px;
+}
+
+.voice-recorder > p {
+  margin: 0 0 20px;
+  font-size: 14px;
+}
+
+.voice-recorder button {
+  padding: 12px 20px;
+  border: none;
+  border-radius: 11px;
+  background: linear-gradient(100deg, #9333ea, #6366f1);
+  color: #ffffff;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition:
+    opacity 0.2s ease,
+    transform 0.2s ease;
+}
+
+.voice-recorder button:hover:not(:disabled) {
+  transform: translateY(-1px);
+}
+
+.voice-recorder button:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.voice-recorder audio {
+  display: block;
+  width: 100%;
+  max-width: 440px;
+  margin-top: 12px;
+}
+
+.voice-recorder [role="alert"] {
+  margin-top: 14px;
+  color: #dc2626;
+  font-size: 14px;
+}
+
+/* Lista de notas */
+
+.voice-note-list > h2 {
+  margin-bottom: 18px;
+}
+
+.voice-note-list > p {
+  font-size: 14px;
+}
+
+/* Tarjeta individual */
+
+.voice-note-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+  margin-bottom: 16px;
+  padding: 22px;
+  background-color: #ffffff;
+  border: 1px solid #e9eaf2;
+  border-radius: 16px;
+  box-shadow: 0 3px 12px rgb(36 38 70 / 3%);
+}
+
+.voice-note-item > div {
+  flex: 1;
+  min-width: 0;
+}
+
+.voice-note-item h3 {
+  margin: 0 0 8px;
+  overflow-wrap: anywhere;
+  color: #292a40;
+  font-size: 16px;
+  font-weight: 650;
+}
+
+.voice-note-item p {
+  margin: 8px 0;
+  color: #85899a;
+  font-size: 12px;
+}
+
+.voice-note-item audio {
+  width: 240px;
+  max-width: 100%;
+}
+
+.voice-note-item button {
+  padding: 9px 12px;
+  border: 1px solid #e4d5fa;
+  border-radius: 28px;
+  background-color: #faf5ff;
+  color: #7e22ce;
+  font-size: 12px;
+  font-weight: 600;
+  cursor: pointer;
+  transition:
+    background-color 0.2s ease,
+    color 0.2s ease;
+}
+
+.voice-note-item button:hover {
+  background-color: #f3e8ff;
+}
+
+.voice-note-item button:last-child {
+  flex-shrink: 0;
+  border-color: #fecaca;
+  background-color: #fff7f7;
+  color: #dc2626;
+}
+
+.voice-note-item button:last-child:hover {
+  background-color: #fee2e2;
+}
+
+.voice-note-item form {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.voice-note-item input {
+  min-width: 0;
+  flex: 1;
+  padding: 10px 12px;
+  border: 1px solid #d9dbea;
+  border-radius: 9px;
+  outline: none;
+}
+
+.voice-note-item input:focus {
+  border-color: #a855f7;
+  box-shadow: 0 0 0 3px rgb(168 85 247 / 12%);
+}
+
+/* Adaptación a móviles */
+
+@media (max-width: 800px) {
+  .sidebar {
+    width: 210px;
+    padding: 26px 14px;
+  }
+
+  .main-content {
+    padding: 28px 22px;
+  }
+
+  .voice-note-item {
+    flex-wrap: wrap;
+  }
+
+  .voice-note-item audio {
+    flex: 1;
+    min-width: 180px;
+  }
+}
 
 @media (max-width: 600px) {
   .app {
@@ -77,11 +280,12 @@
     min-height: auto;
     padding: 20px;
     border-right: none;
-    border-bottom: 1px solid #eeeeee;
+    border-bottom: 1px solid #e9eaf2;
   }
 
   .logo {
     margin-bottom: 20px;
+    font-size: 25px;
   }
 
   .navigation {
@@ -91,10 +295,48 @@
   }
 
   .navigation button {
-    padding: 10px;
+    width: auto;
+    padding: 10px 12px;
+    font-size: 13px;
   }
 
   .main-content {
-    padding: 24px 20px;
+    padding: 26px 16px;
+  }
+
+  .home-header {
+    margin-bottom: 24px;
+  }
+
+  .home-header h1 {
+    font-size: 28px;
+  }
+
+  .voice-recorder {
+    padding: 22px 18px;
+  }
+
+  .voice-note-item {
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 14px;
+    padding: 18px;
+  }
+
+  .voice-note-item > div,
+  .voice-note-item audio {
+    width: 100%;
+  }
+
+  .voice-note-item audio {
+    min-width: 0;
+  }
+
+  .voice-note-item form {
+    width: 100%;
+  }
+
+  .voice-note-item form input {
+    flex-basis: 100%;
   }
 }
