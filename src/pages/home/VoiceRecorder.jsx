@@ -74,6 +74,17 @@ function VoiceRecorder({ onSave }) {
       streamRef.current = stream;
 
       const recorder = new MediaRecorder(stream);
+      console.log("Formato MIME:", recorder.mimeType);
+
+console.log(
+  "WebM compatible:",
+  MediaRecorder.isTypeSupported("audio/webm;codecs=opus")
+);
+
+console.log(
+  "MP4 compatible:",
+  MediaRecorder.isTypeSupported("audio/mp4")
+);
       recorderRef.current = recorder;
       chunksRef.current = [];
 
