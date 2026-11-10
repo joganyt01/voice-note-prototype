@@ -82,12 +82,13 @@ function VoicePlayer({ audioUrl }) {
         onTimeUpdate={handleTimeUpdate}
         onLoadedMetadata={handleLoadedMetadata}
         onEnded={handleEnded}
+         onDurationChange={() => {
+          console.log("Cambio de duración:", audioRef.current?.duration);
+        }}
         onError={() => {
           console.log("Error de reproducción:", audioRef.current?.error);
         }}
-        onDurationChange={() => {
-          console.log("Cambio de duración:", audioRef.current?.duration);
-        }}
+       
       />
 
       <button
