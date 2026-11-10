@@ -74,17 +74,24 @@ function VoiceRecorder({ onSave }) {
       streamRef.current = stream;
 
       const recorder = new MediaRecorder(stream);
-      console.log("Formato MIME:", recorder.mimeType);
+     console.log("Formato MIME:", recorder.mimeType);
 
-console.log(
-  "WebM compatible:",
-  MediaRecorder.isTypeSupported("audio/webm;codecs=opus")
-);
+console.log("Estado inicial:", recorder.state);
 
-console.log(
-  "MP4 compatible:",
-  MediaRecorder.isTypeSupported("audio/mp4")
-);
+recorder.addEventListener("start", () => {
+  console.log("Grabación iniciada:", recorder.mimeType);
+});
+
+recorder.addEventListener("dataavailable", (event) => {
+  console.log("Fragmento recibido:", {
+    size: event.data.size,
+    type: event.data.type,
+  });
+});
+
+recorder.addEventListener("stop", () => {
+  console.log("Grabación finalizada");
+});
       recorderRef.current = recorder;
       chunksRef.current = [];
 
