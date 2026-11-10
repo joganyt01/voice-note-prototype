@@ -42,12 +42,15 @@ function VoicePlayer({ audioUrl }) {
       setCurrentTime(audioRef.current.currentTime);
     }
   }
+function handleLoadedMetadata() {
+  if (audioRef.current) {
+    console.log("Duración detectada:", audioRef.current.duration);
+    console.log("Estado del audio:", audioRef.current.readyState);
+    console.log("Formato del audio:", audioRef.current.currentSrc);
 
-  function handleLoadedMetadata() {
-    if (audioRef.current) {
-      setDuration(audioRef.current.duration);
-    }
+    setDuration(audioRef.current.duration);
   }
+}
 
   function handleSeek(event) {
     const audio = audioRef.current;
@@ -76,6 +79,9 @@ function VoicePlayer({ audioUrl }) {
         onTimeUpdate={handleTimeUpdate}
         onLoadedMetadata={handleLoadedMetadata}
         onEnded={handleEnded}
+        onError={() => {
+  console.log("Error de reproducción:", audioRef.current?.error);
+}}
       />
 
       <button
