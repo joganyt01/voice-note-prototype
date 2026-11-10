@@ -42,15 +42,15 @@ function VoicePlayer({ audioUrl }) {
       setCurrentTime(audioRef.current.currentTime);
     }
   }
-function handleLoadedMetadata() {
-  if (audioRef.current) {
-    console.log("Duración detectada:", audioRef.current.duration);
-    console.log("Estado del audio:", audioRef.current.readyState);
-    console.log("Formato del audio:", audioRef.current.currentSrc);
+  function handleLoadedMetadata() {
+    if (audioRef.current) {
+      console.log("Duración detectada:", audioRef.current.duration);
+      console.log("Estado del audio:", audioRef.current.readyState);
+      console.log("Formato del audio:", audioRef.current.currentSrc);
 
-    setDuration(audioRef.current.duration);
+      setDuration(audioRef.current.duration);
+    }
   }
-}
 
   function handleSeek(event) {
     const audio = audioRef.current;
@@ -62,8 +62,11 @@ function handleLoadedMetadata() {
     audio.currentTime = newTime;
     setCurrentTime(newTime);
   }
-
   function handleEnded() {
+    console.log("Audio terminado");
+    console.log("Duración final:", audioRef.current?.duration);
+    console.log("Tiempo final:", audioRef.current?.currentTime);
+
     setIsPlaying(false);
     setCurrentTime(0);
   }
@@ -80,8 +83,11 @@ function handleLoadedMetadata() {
         onLoadedMetadata={handleLoadedMetadata}
         onEnded={handleEnded}
         onError={() => {
-  console.log("Error de reproducción:", audioRef.current?.error);
-}}
+          console.log("Error de reproducción:", audioRef.current?.error);
+        }}
+        onDurationChange={() => {
+          console.log("Cambio de duración:", audioRef.current?.duration);
+        }}
       />
 
       <button
